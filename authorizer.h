@@ -20,10 +20,11 @@ public:
     explicit Authorizer(QObject *parent = 0);
 	virtual ~Authorizer();
 
-	void authorize();
+	Q_INVOKABLE	void request_token();
+	Q_INVOKABLE	void access_token();
 
 signals:
-#include <string.h>
+
 public slots:
 
 };

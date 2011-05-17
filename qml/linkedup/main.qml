@@ -1,16 +1,13 @@
 import QtQuick 1.0
 
 Rectangle {
-    width: 360
-    height: 360
-    Text {
-        text: "Hello World"
-        anchors.centerIn: parent
-    }
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            Qt.quit();
-        }
-    }
+	width: 800
+	height: 480
+
+
+	LoginScreen{
+		id:loginScreen
+		anchors.fill: parent
+	}
+
 }
