@@ -26,14 +26,18 @@ symbian:TARGET.CAPABILITY += NetworkServices
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    authorizer.cpp
+    authorizer.cpp \
+    linkedinapi.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
 HEADERS += \
-    authorizer.h
+    authorizer.h \
+    settings.h \
+    linkedinapi.h \
+    creds.h
 
 RESOURCES += \
     resources.qrc

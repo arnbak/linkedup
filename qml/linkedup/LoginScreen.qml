@@ -2,8 +2,8 @@ import QtQuick 1.0
 
 Rectangle {
 	id: loginScreen
-//	width: parent.width; height: parent.height
-	width: 800; height:  480
+	width: parent.width; height: parent.height
+//	width: 800; height:  480
 
 	property string fontStyle: "Arial"
 	property int fontSize: 30
@@ -58,7 +58,7 @@ Rectangle {
 		text: "Authorize LinkedUp"
 		anchors.left: parent.left
 		anchors.leftMargin: 20
-		anchors.topMargin: 20
+		anchors.topMargin: 10
 		anchors.top: parent.bottom
 		font.bold: true
 		font.family: fontStyle

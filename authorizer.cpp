@@ -3,8 +3,8 @@
 #include <QDesktopServices>
 #include <QSettings>
 
-#include "iostream"
-using namespace std;
+//#include "iostream"
+//using namespace std;
 
 extern
 
