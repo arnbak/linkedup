@@ -21,12 +21,12 @@ public:
 	virtual ~Authorizer();
 
 	Q_INVOKABLE	void request_token();
-	Q_INVOKABLE	void access_token();
+	Q_INVOKABLE	void access_token(QString pin);
 
-signals:
-
-public slots:
-
+private:
+	QString* req_token;
+	QString* req_secret;
+	QString* signed_url;
 };
 
 #endif // AUTHORIZER_H
