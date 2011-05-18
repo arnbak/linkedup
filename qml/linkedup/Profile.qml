@@ -10,6 +10,7 @@ Rectangle {
 		id:model
 		xml: profileXML
 		query: "/person"
+		Component.onCompleted: console.log(xml)
 
 		XmlRole {name: "firstName"; query: "first-name/string()"}
 		XmlRole {name: "lastName"; query: "last-name/string()"}

@@ -1,7 +1,7 @@
 import QtQuick 1.0
 
-//Component{
-//	id: component
+Component{
+	id: component
 
 	Flickable{
 		id: root
@@ -27,8 +27,8 @@ import QtQuick 1.0
 
 			Text {
 			   id: borderText
-			   width: 80
 			   height: 20
+			   width: parent.width
 			   color: fontColor
 			   text: "Welcome back " + firstName + "!"
 			   anchors.left: parent.left
@@ -39,15 +39,17 @@ import QtQuick 1.0
 			   font.family: fontStyle
 			   font.pixelSize: fontSize
 
-			   Image {
-				   id: profileImage
-				   source: pictureUrl
+			   StatusBubble{
+				   id: status
 				   anchors.top: parent.bottom
 				   anchors.margins: 10
+				   image: pictureUrl
 			   }
+
+
 			}
 		}
 
 
 	}
-//}
+}
