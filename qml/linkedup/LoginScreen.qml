@@ -10,6 +10,9 @@ Rectangle {
 	property int smallFontSize: fontSize * .8
 	property string fontColor: "#006699"
 
+	signal authorized
+	onAuthorized: loginScreen.destroy()
+
  Rectangle {
 	id: inputBorder
 	x: 301
@@ -18,18 +21,18 @@ Rectangle {
 	height: 48
 	color: "#00000000"
 	radius: 5
- anchors.horizontalCenter: parent.horizontalCenter
+	anchors.horizontalCenter: parent.horizontalCenter
 	border.color: "#000000"
 
 	 TextInput {
 		id: textInput
-  y: 46
-  anchors.right: parent.right
-  anchors.rightMargin: 0
-  anchors.left: parent.left
-  anchors.leftMargin: 0
-  anchors.verticalCenter: parent.verticalCenter
-  horizontalAlignment: TextInput.AlignHCenter
+		y: 46
+		anchors.right: parent.right
+		anchors.rightMargin: 0
+		anchors.left: parent.left
+		anchors.leftMargin: 0
+		anchors.verticalCenter: parent.verticalCenter
+		horizontalAlignment: TextInput.AlignHCenter
 		font.pixelSize: 30
 		onAccepted: OAuth.access_token(text)
 		validator: RegExpValidator{regExp: /[0-9][0-9][0-9][0-9][0-9]/}
@@ -65,46 +68,46 @@ Rectangle {
 
  LoginButton {
 	id: loginbutton
- x: 302
- y: 202
+	x: 302
+	y: 202
 	width: 260
 	height: 40
- anchors.horizontalCenter: parent.horizontalCenter
- anchors.horizontalCenterOffset: 0
+	anchors.horizontalCenter: parent.horizontalCenter
+	anchors.horizontalCenterOffset: 0
 	anchors.margins: 10
 
 
  }
 
  Text {
-	 id: text1
-	 y: 142
+	id: text1
+	y: 142
 
-	 height: 20
-	 text: "1. Press the login button"
-  horizontalAlignment: Text.AlignLeft
-  anchors.right: parent.right
-  anchors.rightMargin: 0
-  anchors.left: parent.left
-  anchors.leftMargin: 40
-	 font.pixelSize: smallFontSize
-	 font.family: fontStyle
-	 color: fontColor
+	height: 20
+	text: "1. Press the login button"
+	horizontalAlignment: Text.AlignLeft
+	anchors.right: parent.right
+	anchors.rightMargin: 0
+	anchors.left: parent.left
+	anchors.leftMargin: 40
+	font.pixelSize: smallFontSize
+	font.family: fontStyle
+	color: fontColor
  }
 
  Text {
-	 id: text2
-	 y: 271
-	 height: 20
-	 text: "2. Enter the code you receive below"
-  horizontalAlignment: Text.AlignLeft
-  anchors.right: parent.right
-  anchors.rightMargin: 0
-  anchors.left: parent.left
-  anchors.leftMargin: 40
-	 font.pixelSize: smallFontSize
-	 font.family: fontStyle
-	 color: fontColor
+	id: text2
+	y: 271
+	height: 20
+	text: "2. Enter the code you receive below"
+	horizontalAlignment: Text.AlignLeft
+	anchors.right: parent.right
+	anchors.rightMargin: 0
+	anchors.left: parent.left
+	anchors.leftMargin: 40
+	font.pixelSize: smallFontSize
+	font.family: fontStyle
+	color: fontColor
  }
 
 }

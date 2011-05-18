@@ -66,6 +66,12 @@ void Authorizer::access_token(QString pin){
 		QSettings settings(QSettings::UserScope, "linkedup", "linkedup");
 		settings.setValue("oauth_token", tmpUrl.queryItemValue("oauth_token"));
 		settings.setValue("oauth_token_secret", tmpUrl.queryItemValue("oauth_token_secret"));
+
+		delete req_token;
+		req_token = 0;
+		delete req_secret;
+		req_secret = 0;
+		emit authorized();
 	}
 
 

@@ -27,6 +27,9 @@ private:
 	QString* req_token;
 	QString* req_secret;
 	QString* signed_url;
+
+signals:
+	void authorized();
 };
 
 #endif // AUTHORIZER_H
