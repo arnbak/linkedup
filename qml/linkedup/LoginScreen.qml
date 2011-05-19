@@ -39,31 +39,20 @@ Rectangle {
 	 }
  }
 
- Rectangle {
-	 id: border
-	 height: 40
-	 color: "#3399cc"
-	 anchors.right: parent.right
-	 anchors.rightMargin: 0
-	 anchors.left: parent.left
-	 anchors.leftMargin: 0
-	 anchors.top: parent.top
-	 anchors.topMargin: 0
 
-	 Text {
-		id: borderText
-		width: 80
-		height: 20
-		color: fontColor
-		text: "Authorize LinkedUp"
-		anchors.left: parent.left
-		anchors.leftMargin: 20
-		anchors.topMargin: 10
-		anchors.top: parent.bottom
-		font.bold: true
-		font.family: fontStyle
-		font.pixelSize: fontSize
-	 }
+ Text {
+	id: borderText
+	width: 80
+	height: 20
+	color: fontColor
+	text: "Authorize LinkedUp"
+	anchors.left: parent.left
+	anchors.leftMargin: 20
+	anchors.topMargin: 10
+	anchors.top: parent.top
+	font.bold: true
+	font.family: fontStyle
+	font.pixelSize: fontSize
  }
 
  LoginButton {

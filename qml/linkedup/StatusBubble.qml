@@ -12,14 +12,11 @@ Rectangle {
 		Bubble{
 			id: bubble
 			anchors.left: parent.right
-//			anchors.top: parent.top
 			anchors.bottom: parent.bottom
 			width: root.width - x
-
-			anchors.margins: {
-//				top: -5
-				left: 10
-			}
+			anchors.top: parent.top
+			anchors.topMargin: -5
+			onClicked:API.post_status(text)
 		}
 
 	}

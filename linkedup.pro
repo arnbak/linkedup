@@ -4,7 +4,8 @@ folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
 LIBS += -L/usr/local/lib/ -loauth
-QT += declarative
+QT += declarative\
+		xml
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
@@ -41,3 +42,6 @@ HEADERS += \
 
 RESOURCES += \
     resources.qrc
+
+OTHER_FILES += \
+    status.xml

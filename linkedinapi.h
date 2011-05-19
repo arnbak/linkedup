@@ -15,10 +15,14 @@ public:
     explicit LinkedInAPI(QObject *parent = 0);
 	~LinkedInAPI();
 
+	QString api_request(QString url);
 
 	Q_INVOKABLE QString get_person_current();
 	Q_INVOKABLE QString get_person_by_id();
-	Q_INVOKABLE bool post_status(QString status);
+	Q_INVOKABLE QString search_person(QString firstName, QString lastName);
+	Q_INVOKABLE void post_status(QString status);
+
+	QString generate_header(char* params);
 
 
 };

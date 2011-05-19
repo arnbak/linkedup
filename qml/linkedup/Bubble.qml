@@ -4,6 +4,7 @@ Rectangle {
 	id: root
 
 	property alias text: input.text
+	signal clicked
 
 	width: parent.width
 	height: parent.height
@@ -11,7 +12,6 @@ Rectangle {
 
 	BorderImage {
 		id: bubble
-//		anchors.fill: parent
 
 		width: parent.width - x - 20
 		horizontalTileMode: BorderImage.Stretch
@@ -37,6 +37,21 @@ Rectangle {
 				anchors.fill: parent
 				id: background
 				z: -1
+				anchors.margins: -2
+				border.width: 0
+				border.color: "black"
+			}
+
+			Button{
+				id: share
+				text: "Share"
+				anchors.top: parent.bottom
+				anchors.right: parent.right
+				anchors.margins: 5
+				Connections{
+					onClicked: root.clicked()
+
+				}
 			}
 
 			states: [ /*creates a placeholder effect*/

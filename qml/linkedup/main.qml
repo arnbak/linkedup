@@ -12,6 +12,7 @@ Rectangle {
 			var object = profileSCreen.createObject(root)
 	}
 
+	property int borderHeight: 40
 	signal authorized
 	function getAuthorization(){
 		var object = loginScreen.createObject(root)
@@ -25,6 +26,7 @@ Rectangle {
 		id: loginScreen
 		LoginScreen{
 			anchors.fill: parent
+			anchors.topMargin: borderHeight
 			Component.onCompleted: root.authorized.connect(authorized)
 		}
 	}
@@ -32,7 +34,24 @@ Rectangle {
 
 	Component{
 		id: profileSCreen
-		Profile{}
+		Profile{
+			anchors.fill: parent
+			anchors.leftMargin: 10
+			anchors.topMargin: borderHeight
+		}
+	}
+
+	Rectangle {
+		id: border
+		height: borderHeight
+		color: "#3399cc"
+		anchors.right: parent.right
+		anchors.rightMargin: 0
+		anchors.left: parent.left
+		anchors.leftMargin: 0
+		anchors.top: parent.top
+		anchors.topMargin: 0
+		z:100
 	}
 
 }

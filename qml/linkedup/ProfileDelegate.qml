@@ -5,8 +5,8 @@ Component{
 
 	Flickable{
 		id: root
-//		width: parent.width; height: parent.height
-		width: 800; height: 480
+		width: parent.width; height: parent.height
+//		width: 800; height: 480
 
 		/*Color and font properties*/
 		property string fontStyle: "Arial"
@@ -14,42 +14,29 @@ Component{
 		property int smallFontSize: fontSize * .8
 		property string fontColor: "#006699"
 
-		Rectangle {
-			id: border
-			height: 40
-			color: "#3399cc"
-			anchors.right: parent.right
-			anchors.rightMargin: 0
-			anchors.left: parent.left
-			anchors.leftMargin: 0
-			anchors.top: parent.top
-			anchors.topMargin: 0
+		boundsBehavior: Flickable.StopAtBounds
 
-			Text {
-			   id: borderText
-			   height: 20
-			   width: parent.width
-			   color: fontColor
-			   text: "Welcome back " + firstName + "!"
-			   anchors.left: parent.left
-			   anchors.leftMargin: 20
-			   anchors.topMargin: 10
+		Text {
+		   id: borderText
+		   height: 20
+		   width: parent.width
+		   color: fontColor
+		   text: "Welcome back " + firstName + "!"
+		   anchors.topMargin: 10
+		   font.bold: true
+		   font.family: fontStyle
+		   font.pixelSize: fontSize
+
+		   StatusBubble{
+			   id: status
 			   anchors.top: parent.bottom
-			   font.bold: true
-			   font.family: fontStyle
-			   font.pixelSize: fontSize
-
-			   StatusBubble{
-				   id: status
-				   anchors.top: parent.bottom
-				   anchors.margins: 10
-				   image: pictureUrl
-			   }
+			   anchors.margins: 10
+			   image: pictureUrl
+		   }
 
 
-			}
 		}
-
-
 	}
+
+
 }
