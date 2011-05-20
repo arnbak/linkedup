@@ -60,17 +60,11 @@ Rectangle {
 		z: 100
 	}
 
-//	Rectangle {
-//		id: border
-//		height: 40
-//		color: "#3399cc"
-//		anchors.right: parent.right
-//		anchors.rightMargin: 0
-//		anchors.left: parent.left
-//		anchors.leftMargin: 0
-//		anchors.top: parent.top
-//		anchors.topMargin: 0
-//		z:100
-//	}
+	ListView{
+		id: view
+		anchors.fill: parent
+		anchors.topMargin: border.height
+		orientation: ListView.Horizontal
+	}
 
 }
