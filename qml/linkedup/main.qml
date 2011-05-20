@@ -67,7 +67,7 @@ Rectangle {
 		anchors.fill: parent
 		anchors.topMargin: border.height
 		orientation: ListView.Horizontal
-		model: mainModel{}
+		model: Model{}
 	}
 
 }
