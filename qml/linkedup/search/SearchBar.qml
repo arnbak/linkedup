@@ -8,6 +8,8 @@ Rectangle {
 	anchors.right: parent.right
 	anchors.rightMargin: 20
 
+	property string results
+
 	Button {
 		id: button
 		width: parent.height
@@ -16,9 +18,8 @@ Rectangle {
 		anchors.rightMargin: 0
 		anchors.verticalCenter: parent.verticalCenter
 		iconUrl: "qrc:///qml/images/search.png"
-		onClicked:{
-			console.log(API.search_person(searchbaroptions.text, textInput.text))
-		}
+		onClicked: root.results = API.search_person(searchbaroptions.text, textInput.text)
+
 	}
 
 	 Rectangle {
