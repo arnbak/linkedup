@@ -1,4 +1,5 @@
 import QtQuick 1.0
+import "../"
 
 Rectangle {
 	id: root
@@ -15,6 +16,9 @@ Rectangle {
 		anchors.rightMargin: 0
 		anchors.verticalCenter: parent.verticalCenter
 		iconUrl: "qrc:///qml/images/search.png"
+		onClicked:{
+			console.log(API.search_person(searchbaroptions.text, textInput.text))
+		}
 	}
 
 	 Rectangle {
@@ -30,7 +34,8 @@ Rectangle {
 
 
 		 SearchBarOptions {
-			 id: searchbaroptios
+			 id: searchbaroptions
+			 z:-1
 			 anchors.left: parent.left
 			 anchors.leftMargin: 0
 			 anchors.verticalCenter: parent.verticalCenter
@@ -38,16 +43,20 @@ Rectangle {
 		 }
 
 		 TextInput {
-			id: text_input1
+			id: textInput
 			height: 20
+			focus: true
 			anchors.right: parent.right
 			anchors.rightMargin: 5
 			anchors.left: parent.left
-			anchors.leftMargin: searchbaroptios.width + 5
+			anchors.leftMargin: searchbaroptions.width + 5
 			anchors.verticalCenter: parent.verticalCenter
 			smooth: true
 			font.family: "Arial"
 			font.pixelSize: 18
+			Connections{
+				onAccepted: button.clicked()
+			}
 		 }
 	 }
 

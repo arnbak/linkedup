@@ -1,4 +1,5 @@
 import QtQuick 1.0
+import "profile"
 
 Rectangle {
 //	width: 800; height: 480
