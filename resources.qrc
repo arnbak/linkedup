@@ -4,5 +4,6 @@
         <file>qml/images/bubble.png</file>
         <file>qml/images/arrow.png</file>
         <file>qml/images/search.png</file>
+        <file>qml/images/down.png</file>
     </qresource>
 </RCC>

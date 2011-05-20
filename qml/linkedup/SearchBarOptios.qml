@@ -17,21 +17,19 @@ Rectangle{
 	}
 
 	Rectangle{
-//		color: "#5eb5e0"
+
+		height: root.height
 		gradient: Gradient {
 			GradientStop {
 				position: 0.00;
-				color: "#83e1e4";
+				color: "#d3d3d3";
 			}
 			GradientStop {
 				position: 1.00;
-				color: "#7b9ec6";
+				color: "#c0c0c0";
 			}
 		}
-		height: root.height
 		width: root.width
-		border.width: 0
-		border.color: "black"
 		z:100
 
 		MouseArea{
@@ -54,6 +52,15 @@ Rectangle{
 			anchors.verticalCenter: parent.verticalCenter
 			text: "Profile"
 			}
+
+		Image {
+			id: arrow
+			source: "qrc:///qml/images/down.png"
+			anchors.verticalCenter: parent.verticalCenter
+			anchors.right: parent.right
+			anchors.margins: 5
+			scale: .8
+		}
 		}
 
 	states: [
