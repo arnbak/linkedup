@@ -60,11 +60,14 @@ Rectangle {
 		z: 100
 	}
 
+
+
 	ListView{
 		id: view
 		anchors.fill: parent
 		anchors.topMargin: border.height
 		orientation: ListView.Horizontal
+		model: mainModel{}
 	}
 
 }
