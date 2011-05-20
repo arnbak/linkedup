@@ -29,7 +29,7 @@ Rectangle {
 		 z:1
 
 
-		 SearchBarOptios {
+		 SearchBarOptions {
 			 id: searchbaroptios
 			 anchors.left: parent.left
 			 anchors.leftMargin: 0
