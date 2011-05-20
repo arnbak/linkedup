@@ -1,13 +1,13 @@
 Source: linkedup
-Section: user/hidden
+Section: user/network
 Priority: optional
-Maintainer: Anthony Naddeo <anthony@unknown>
-Build-Depends: debhelper (>= 5), libqt4-dev
+Maintainer: Anthony Naddeo <anthony.naddeo@gmail.com>
+Build-Depends: debhelper (>= 5), libqt4-dev, liboauth
 Standards-Version: 3.7.3
 Homepage: <insert the upstream URL, if relevant>
 
 Package: linkedup
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
+Description: Mobile LinkedIn application for Maemo and Meego
  <insert long description, indented with spaces>

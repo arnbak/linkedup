@@ -12,7 +12,7 @@ Rectangle {
 			var object = profileSCreen.createObject(root)
 	}
 
-	property int borderHeight: 40
+	property alias borderHeight: border.height
 	signal authorized
 	function getAuthorization(){
 		var object = loginScreen.createObject(root)
@@ -20,7 +20,8 @@ Rectangle {
 	}
 
 	/**Screen for authorizing the application
-	  This screen is launched
+	  This screen is launched if no token is found for
+	  the user
 	  */
 	Component{
 		id: loginScreen
@@ -31,7 +32,8 @@ Rectangle {
 		}
 	}
 
-
+	/**Screen to show the user their profile
+	  */
 	Component{
 		id: profileSCreen
 		Profile{
@@ -41,17 +43,22 @@ Rectangle {
 		}
 	}
 
-	Rectangle {
-		id: border
-		height: borderHeight
-		color: "#3399cc"
-		anchors.right: parent.right
-		anchors.rightMargin: 0
-		anchors.left: parent.left
-		anchors.leftMargin: 0
-		anchors.top: parent.top
-		anchors.topMargin: 0
-		z:100
+	Toolbar{
+		id:border
+		z: 100
 	}
+
+//	Rectangle {
+//		id: border
+//		height: 40
+//		color: "#3399cc"
+//		anchors.right: parent.right
+//		anchors.rightMargin: 0
+//		anchors.left: parent.left
+//		anchors.leftMargin: 0
+//		anchors.top: parent.top
+//		anchors.topMargin: 0
+//		z:100
+//	}
 
 }
