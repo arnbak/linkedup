@@ -8,8 +8,11 @@ Rectangle {
 	Component.onCompleted: {
 		if(Settings.get("oauth_token") == "" || Settings.get("oauth_token_secret") == "")
 			getAuthorization()
-		else
-			var object = profileSCreen.createObject(root)
+		else{
+//			var object = profileSCreen.createObject(root)
+			var object = searchScreen.createObject(root)
+		}
+
 	}
 
 	property alias borderHeight: border.height
@@ -37,6 +40,15 @@ Rectangle {
 	Component{
 		id: profileSCreen
 		Profile{
+			anchors.fill: parent
+			anchors.leftMargin: 10
+			anchors.topMargin: borderHeight
+		}
+	}
+
+	Component{
+		id: searchScreen
+		Search{
 			anchors.fill: parent
 			anchors.leftMargin: 10
 			anchors.topMargin: borderHeight

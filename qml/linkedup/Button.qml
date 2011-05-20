@@ -4,11 +4,18 @@ Rectangle {
 	id: button
 
 	property alias text: text.text
+	property string iconUrl: "null"
 	signal clicked
 
 	width: text.width
 	height: text.height + 10
 	border.width: 1
+
+	Component.onCompleted:{
+		if(iconUrl != "null"){
+			var object = icon.createObject(button)
+		}
+	}
 
 	radius: 5
 	gradient: Gradient {
@@ -30,6 +37,15 @@ Rectangle {
 		verticalAlignment: Text.AlignVCenter
 		anchors.centerIn: parent
 		font.pixelSize: 20
+	}
+
+	Component{
+		id: icon
+		Image {
+			id: image
+			anchors.fill: parent
+			source: iconUrl
+		}
 	}
 
 	MouseArea {

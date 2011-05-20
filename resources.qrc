@@ -3,5 +3,6 @@
         <file>qml/images/linkedin-login.png</file>
         <file>qml/images/bubble.png</file>
         <file>qml/images/arrow.png</file>
+        <file>qml/images/search.png</file>
     </qresource>
 </RCC>
