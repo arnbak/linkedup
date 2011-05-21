@@ -7,6 +7,8 @@
 #include <iostream>
 using namespace std;
 
+#define NULL 0
+
 LinkedInAPI::LinkedInAPI(QObject *parent) :
     QObject(parent)
 {
@@ -65,8 +67,8 @@ QString LinkedInAPI::get_person_current(){
 	return api_request("http://api.linkedin.com/v1/people/~:(id,first-name,last-name,headline,location,summary,specialties,interests,picture-url)");
 }
 
-QString LinkedInAPI::get_person_by_id(){
-
+QString LinkedInAPI::get_person_by_id(QString id){
+	return api_request("http://api.linkedin.com/v1/people/id="+id+":(id,first-name,last-name,headline,location,summary,specialties,interests,picture-url)");
 }
 
 QString LinkedInAPI::search_person(QString type, QString search){
@@ -133,6 +135,7 @@ void LinkedInAPI::post_message(QString subjectBody, QString message){
 	root.appendChild(body);
 
 	cout << xml.toString().toStdString() << endl;
+	api_post("http://api.linkedin.com/v1/people/~/mailbox", xml.toString());
 }
 
 QString LinkedInAPI::generate_header(char* return_args){

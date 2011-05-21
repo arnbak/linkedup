@@ -6,7 +6,18 @@ Rectangle {
 	signal clicked(string name)
 
 	height: 40
-	color: "#3399cc"
+//	color: "#3399cc"
+	gradient: Gradient {
+		GradientStop {
+			position: 0.00;
+			color: "#6aafd1";
+		}
+		GradientStop {
+			position: 1.00;
+			color: "#3399cc";
+		}
+	}
+
 	anchors.right: parent.right
 	anchors.rightMargin: 0
 	anchors.left: parent.left

@@ -10,5 +10,7 @@
         <file>qml/images/searchView.png</file>
         <file>qml/images/email.png</file>
         <file>qml/images/search-small.png</file>
+        <file>qml/images/bubble-plain.png</file>
+        <file>qml/images/home.png</file>
     </qresource>
 </RCC>

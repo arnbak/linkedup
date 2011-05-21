@@ -1,6 +1,7 @@
 import QtQuick 1.0
 
 Item {
+	id: root
 	width: parent.width
 	height: parent.height
 
@@ -16,6 +17,7 @@ Item {
 		anchors.fill: parent
 		anchors.leftMargin: 10
 		visible: false
+		onClicked: viewConnection.xml = xml
 	}
 
 	Mail{
@@ -25,6 +27,13 @@ Item {
 		visible: false
 	}
 
+	ViewConnection{
+		id: viewConnection
+		anchors.fill: parent
+		anchors.margins: 10
+		visible: false
+		onXmlChanged: root.state = "viewConnection"
+	}
 
 
 	states: [
@@ -39,6 +48,10 @@ Item {
 		State {
 			name: "mail"
 			PropertyChanges {target: mail; visible: true}
+		},
+		State {
+			name: "viewConnection"
+			PropertyChanges {target: viewConnection; visible: true}
 		}
 	]
 }

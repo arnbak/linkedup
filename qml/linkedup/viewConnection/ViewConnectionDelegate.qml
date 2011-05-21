@@ -1,20 +1,23 @@
 import QtQuick 1.0
 
+Component{
+	id: component
 
+	Flickable{
+		id: root
+//		width: parent.width; height: parent.height
+//		width: 800; height: 480
+		anchors.fill: parent
 
-Item {
-	id: root
-//    width: parent.width; height: parent.height
-	width: 800; height: 80
+		/*Color and font properties*/
+		property string fontStyle: "Arial"
+		property int fontSize: 25
+		property int smallFontSize: fontSize * .8
+		property string fontColor: "#006699"
 
-	signal clicked(string xml)
-
-	MouseArea{
-		width: row.width
-		height: row.height
-		Connections{
-			onClicked: root.clicked(API.get_person_by_id(id))
-		}
+		boundsBehavior: Flickable.StopAtBounds
+		contentHeight: height
+		contentWidth: width
 
 		Row{
 			id: row
@@ -39,8 +42,4 @@ Item {
 		}
 	}
 
-
 }
-
-
-

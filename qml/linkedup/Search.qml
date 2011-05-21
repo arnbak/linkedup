@@ -6,6 +6,8 @@ Rectangle {
 	width: 800; height: 480
 //	width: parent.width; height: parent.height
 
+	signal clicked(string xml)
+
 	SearchBar{
 		id: searchBar
 		z: 100
@@ -14,6 +16,7 @@ Rectangle {
 		onResultsChanged: list.model.reload()
 	}
 
+
 	ListView{
 		id: list
 		clip: true
@@ -21,7 +24,11 @@ Rectangle {
 		anchors.fill: parent
 		anchors.topMargin: searchBar.height + searchBar.anchors.margins + 10
 		model:  model
-		delegate: SearchDelegate{}
+		delegate: SearchDelegate{
+			Connections{
+				onClicked: root.clicked(xml)
+			}
+		}
 	}
 
 	SearchModel{
