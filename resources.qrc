@@ -6,5 +6,9 @@
         <file>qml/images/search.png</file>
         <file>qml/images/down.png</file>
         <file>qml/images/profile-picture.png</file>
+        <file>qml/images/user.png</file>
+        <file>qml/images/searchView.png</file>
+        <file>qml/images/email.png</file>
+        <file>qml/images/search-small.png</file>
     </qresource>
 </RCC>

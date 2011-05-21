@@ -1,5 +1,5 @@
 import QtQuick 1.0
-import "../"
+import "../common"
 
 Rectangle {
 	id: root
@@ -13,11 +13,13 @@ Rectangle {
 	Button {
 		id: button
 		width: parent.height
+		radius: 0
+		border.color: "gray"
 		height: parent.height
 		anchors.right: parent.right
 		anchors.rightMargin: 0
 		anchors.verticalCenter: parent.verticalCenter
-		iconUrl: "qrc:///qml/images/search.png"
+		iconUrl: "qrc:///qml/images/search-small.png"
 		onClicked: root.results = API.search_person(searchbaroptions.text, textInput.text)
 
 	}

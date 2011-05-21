@@ -2,6 +2,9 @@ import QtQuick 1.0
 
 Rectangle {
 	id: border
+
+	signal clicked(string name)
+
 	height: 40
 	color: "#3399cc"
 	anchors.right: parent.right
@@ -19,6 +22,9 @@ Rectangle {
 		opacity: 0
 		anchors.verticalCenter: parent.verticalCenter
 		Behavior on opacity {NumberAnimation{duration: 250}}
+		Connections{
+			onClicked: border.clicked(name)
+		}
 	}
 
 	 Rectangle {

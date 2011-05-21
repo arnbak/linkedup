@@ -16,11 +16,13 @@ public:
 	~LinkedInAPI();
 
 	QString api_request(QString url);
+	QString api_post(QString url, QString body);
 
 	Q_INVOKABLE QString get_person_current();
 	Q_INVOKABLE QString get_person_by_id();
 	Q_INVOKABLE QString search_person(QString type, QString search);
 	Q_INVOKABLE void post_status(QString status);
+	Q_INVOKABLE void post_message(QString subject, QString message);
 
 	QString generate_header(char* params);
 

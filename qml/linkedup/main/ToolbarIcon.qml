@@ -4,7 +4,8 @@ Rectangle {
 	id: root
 
 	signal clicked
-	property string url
+	property alias source: image.source
+	property string name
 
     width: 100
 	height: width
@@ -15,14 +16,16 @@ Rectangle {
 	Image {
 		id: image
 		anchors.fill: parent
-		source: "qrc:///qml/images/arrow.png"
+		smooth: true
 	}
+
 
 	MouseArea {
 		id: mouse_area
 		anchors.fill: parent
+		z: 100
 		Connections{
-			onClicked: root.clicked
+			onClicked: root.clicked()
 		}
 	}
 

@@ -35,6 +35,32 @@ QString LinkedInAPI::api_request(QString url){
 	return return_reply;
 }
 
+
+QString LinkedInAPI::api_post(QString url, QString body){
+	char* return_args = 0;
+	QSettings settings(QSettings::UserScope, "linkedup", "linkedup");
+	char* request = oauth_sign_url2(url.toStdString().c_str(),
+								   &return_args,
+								   OA_HMAC,
+								   "POST",
+								   CONSUMER_KEY,
+								   CONSUMER_SECRET,
+								   settings.value("oauth_token", NULL).toString().toStdString().c_str(),
+								   settings.value("oauth_token_secret", NULL).toString().toStdString().c_str());
+
+	QString header = generate_header(return_args);
+	char* reply = oauth_http_post2(request, body.toStdString().c_str(), header.toStdString().c_str());
+	QString return_reply(reply);
+
+	cout << "Succesfuly posted" << endl;
+
+	delete request;
+	delete return_args;
+	delete reply;
+	return return_reply;
+}
+
+
 QString LinkedInAPI::get_person_current(){
 	return api_request("http://api.linkedin.com/v1/people/~:(id,first-name,last-name,headline,location,summary,specialties,interests,picture-url)");
 }
@@ -70,28 +96,43 @@ void LinkedInAPI::post_status(QString status){
 	QDomText bodyText = xml.createTextNode(status);
 	body.appendChild(bodyText);
 	root.appendChild(body);
-	/*end xml*/
+
+	api_post("https://api.linkedin.com/v1/people/~/person-activities", xml.toString());
+
+}
+
+void LinkedInAPI::post_message(QString subjectBody, QString message){
+	/*create the XML that linkedin uses to make the status*/
+	QDomDocument xml;
+
+	QDomProcessingInstruction pi = xml.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-16\"");
+	xml.appendChild(pi);
+
+	QDomElement root = xml.createElement("mailbox-item");
+	xml.appendChild(root);
+
+	QDomElement recipients = xml.createElement("recipients");
+	root.appendChild(recipients);
+
+	QDomElement recipient = xml.createElement("recipient");
+	recipients.appendChild(recipient);
+
+	QDomElement person = xml.createElement("person");
+	person.setAttribute("path", "/people/~");
+	recipient.appendChild(person);
 
 
-	char* return_args = 0;
-	QSettings settings(QSettings::UserScope, "linkedup", "linkedup");
-	char* request = oauth_sign_url2("https://api.linkedin.com/v1/people/~/person-activities",
-										   &return_args,
-										   OA_HMAC,
-										   "POST",
-										   CONSUMER_KEY,
-										   CONSUMER_SECRET,
-										   settings.value("oauth_token", NULL).toString().toStdString().c_str(),
-										   settings.value("oauth_token_secret", NULL).toString().toStdString().c_str());
+	QDomElement subject = xml.createElement("subject");
+	QDomText subjectText = xml.createTextNode(subjectBody);
+	subject.appendChild(subjectText);
+	root.appendChild(subject);
 
-	QString header = generate_header(return_args);
-	char* reply = oauth_http_post2(request, xml.toString().toStdString().c_str(), header.toStdString().c_str());
+	QDomElement body = xml.createElement("body");
+	QDomText bodyText = xml.createTextNode(message);
+	body.appendChild(bodyText);
+	root.appendChild(body);
 
-	cout << "Succesfuly posted" << endl;
-
-	delete request;
-	delete return_args;
-	delete reply;
+	cout << xml.toString().toStdString() << endl;
 }
 
 QString LinkedInAPI::generate_header(char* return_args){

@@ -4,7 +4,7 @@ Rectangle {
 	id: button
 
 	property alias text: text.text
-	property string iconUrl: "null"
+	property string iconUrl
 	signal clicked
 
 	width: text.width
@@ -12,7 +12,7 @@ Rectangle {
 	border.width: 1
 
 	Component.onCompleted:{
-		if(iconUrl != "null"){
+		if(iconUrl){
 			var object = icon.createObject(button)
 		}
 	}
@@ -45,6 +45,7 @@ Rectangle {
 			id: image
 			anchors.fill: parent
 			source: iconUrl
+			smooth: true
 		}
 	}
 
