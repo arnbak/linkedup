@@ -28,7 +28,7 @@ Flickable {
 					switch(index){
 					case 0: {name = "profile"; source = "qrc:///qml/images/user.png";break;}
 					case 1: {name = "search"; source = "qrc:///qml/images/searchView.png" ;break;}
-					case 2: {name = "inbox"; source = "qrc:///qml/images/email.png" ;break;}
+					case 2: {name = "mail"; source = "qrc:///qml/images/email.png" ;break;}
 					default: {name = "";break;}
 					}
 				}

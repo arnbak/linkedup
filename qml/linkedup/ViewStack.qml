@@ -18,6 +18,13 @@ Item {
 		visible: false
 	}
 
+	Mail{
+		id: mail
+		anchors.fill: parent
+		anchors.leftMargin: 10
+		visible: false
+	}
+
 
 
 	states: [
@@ -28,6 +35,10 @@ Item {
 		State {
 			name: "search"
 			PropertyChanges {target: search; visible: true}
+		},
+		State {
+			name: "mail"
+			PropertyChanges {target: mail; visible: true}
 		}
 	]
 }
