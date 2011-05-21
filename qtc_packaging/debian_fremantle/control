@@ -2,9 +2,8 @@ Source: linkedup
 Section: user/network
 Priority: optional
 Maintainer: Anthony Naddeo <anthony.naddeo@gmail.com>
-Build-Depends: debhelper (>= 5), libqt4-dev, liboauth
+Build-Depends: debhelper (>= 5), libqt4-dev, liboauth-dev
 Standards-Version: 3.7.3
-Homepage: <insert the upstream URL, if relevant>
 
 Package: linkedup
 Architecture: any

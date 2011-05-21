@@ -27,8 +27,9 @@ build-stamp: configure-stamp
 	dh_testdir
 
 	# Add here commands to compile the package.
+	#qmake                                             # Uncomment this line for publishing!
 	$(MAKE)
-	#docbook-to-man debian/linkedup.sgml > linkedup.1
+	#docbook-to-man debian/qtweather-qml.sgml > qtweather-qml.1
 
 	touch $@
 
@@ -38,7 +39,7 @@ clean:
 	rm -f build-stamp configure-stamp
 
 	# Add here commands to clean up after the build process.
-	$(MAKE) clean
+	$(MAKE) clean                                       # Comment this line for publishing!
 
 	dh_clean 
 
@@ -48,7 +49,7 @@ install: build
 	dh_clean -k 
 	dh_installdirs
 
-	# Add here commands to install the package into debian/linkedup.
+	# Add here commands to install the package into debian/quickui.
 	$(MAKE) INSTALL_ROOT="$(CURDIR)"/debian/linkedup install
 
 
