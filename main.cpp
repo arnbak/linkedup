@@ -26,8 +26,10 @@ int main(int argc, char *argv[])
 	QObject *rootObject = dynamic_cast<QObject*>(viewer.rootObject());
 	QObject::connect(&auth, SIGNAL(authorized()), rootObject, SIGNAL(authorized()));
 
-
-//	viewer.showExpanded();
+#ifdef Q_WS_MAEMO_5
 	viewer.showFullScreen();
+#else
+	viewer.showExpanded();
+#endif
     return app.exec();
 }

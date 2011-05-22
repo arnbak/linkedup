@@ -1,9 +1,15 @@
 # Add more folders to ship with the application, here
 folder_01.source = qml/linkedup
 folder_01.target = qml
-DEPLOYMENTFOLDERS = folder_01
+folder_lib.source = lib/
+folder_lib.target = ./
+launcher.source = ./linkedup.sh
+launcher.target = ./
+DEPLOYMENTFOLDERS = folder_01\
+					folder_lib\
+					launcher
 
-LIBS += -L/usr/local/lib/ -loauth
+LIBS += -L./lib/ -loauth
 QT += declarative\
 		xml
 

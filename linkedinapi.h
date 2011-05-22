@@ -5,7 +5,7 @@
 #include "creds.h"
 
 extern "C" {
-#include <oauth.h>
+#include "oauth.h"
 }
 
 class LinkedInAPI : public QObject
