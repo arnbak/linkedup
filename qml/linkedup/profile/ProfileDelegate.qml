@@ -10,7 +10,7 @@ Component{
 
 		/*Color and font properties*/
 		property string fontStyle: "Arial"
-		property int fontSize: 25
+		property int fontSize: 35
 		property int smallFontSize: fontSize * .8
 		property string fontColor: "#006699"
 
@@ -30,8 +30,10 @@ Component{
 		   StatusBubble{
 			   id: status
 			   anchors.top: parent.bottom
-			   anchors.margins: 10
+			   anchors.margins: borderText.height
 			   image: pictureUrl
+			   fontSize: smallFontSize
+//			   buttonFontSize: fontSize
 		   }
 
 

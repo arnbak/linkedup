@@ -4,6 +4,8 @@ Rectangle {
 	id: root
 
 	property alias text: input.text
+	property alias fontSize: input.font.pixelSize
+	property alias buttonFontSize: share.fontSize
 	signal clicked
 
 	width: parent.width

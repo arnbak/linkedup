@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
 	QObject::connect(&auth, SIGNAL(authorized()), rootObject, SIGNAL(authorized()));
 
 
-	viewer.showExpanded();
+//	viewer.showExpanded();
+	viewer.showFullScreen();
     return app.exec();
 }

@@ -4,6 +4,7 @@ Rectangle {
 	id: button
 
 	property alias text: text.text
+	property alias fontSize: text.font.pixelSize
 	property string iconUrl
 	signal clicked
 

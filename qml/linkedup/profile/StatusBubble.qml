@@ -4,6 +4,8 @@ import "../common"
 Rectangle {
 	id: root
 	property alias image: profileImage.source
+	property alias fontSize: bubble.fontSize
+	property alias buttonFontSize: bubble.buttonFontSize
 	width: parent.width
 
 	Image {

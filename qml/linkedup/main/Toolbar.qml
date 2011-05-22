@@ -54,6 +54,7 @@ Rectangle {
 		 MouseArea {
 			 id: mouse_area1
 			 anchors.fill: parent
+			 anchors.margins: -20
 			 onClicked: {
 				 if(border.state == "down")
 					 border.state = ""
