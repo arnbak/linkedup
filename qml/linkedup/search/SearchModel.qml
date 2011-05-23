@@ -10,5 +10,6 @@ XmlListModel{
 	XmlRole { name: "lastName"; query: "last-name/string()"; isKey: true }
 	XmlRole { name: "pictureUrl"; query: "picture-url/string()"; isKey: true }
 	XmlRole { name: "headline"; query: "headline/string()"; isKey: true}
-
+	XmlRole { name: "industry"; query: "industry/string()"; isKey: true}
+	XmlRole { name: "location"; query: "location/name/string()"; isKey: true}
 }

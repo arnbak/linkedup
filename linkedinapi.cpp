@@ -68,12 +68,12 @@ QString LinkedInAPI::get_person_current(){
 }
 
 QString LinkedInAPI::get_person_by_id(QString id){
-	return api_request("http://api.linkedin.com/v1/people/id="+id+":(id,first-name,last-name,headline,location,summary,specialties,interests,picture-url)");
+	return api_request("http://api.linkedin.com/v1/people/id="+id+":(id,first-name,last-name,headline,location,summary,specialties,interests,picture-url,industry)");
 }
 
 QString LinkedInAPI::search_person(QString type, QString search){
 	search = QUrl::toPercentEncoding(search);
-	return api_request("http://api.linkedin.com/v1/people-search:(people:(id,first-name,last-name,picture-url,headline),num-results)?keywords=" + search);
+	return api_request("http://api.linkedin.com/v1/people-search:(people:(id,first-name,last-name,picture-url,headline,location,industry),num-results)?keywords=" + search);
 }
 
 QString LinkedInAPI::get_connections_current(){

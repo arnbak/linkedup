@@ -1,5 +1,5 @@
 import QtQuick 1.0
-import "search"
+import "selfConnections"
 
 Rectangle {
 	id: root
@@ -12,17 +12,12 @@ Rectangle {
 		spacing: 10
 		anchors.fill: parent
 		model:  model
-		delegate: SearchDelegate{
-//			Connections{
-//				onClicked: root.clicked(xml)
-//			}
-		}
+		delegate: SelfConnectionsDelegate{}
 	}
 
 
-	SearchModel{
+	SelfConnectionsModel{
 		id: model
-		query: "/connections/person"
 		xml: API.get_connections_current()
 	}
 }
