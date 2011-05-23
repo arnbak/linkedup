@@ -35,6 +35,20 @@ Item {
 		onXmlChanged: root.state = "viewConnection"
 	}
 
+	SelfConnections{
+		id: connections
+		anchors.fill: parent
+		anchors.margins: 10
+		visible: false
+	}
+
+	News{
+		id: news
+		anchors.fill: parent
+		anchors.margins: 10
+		visible: false
+	}
+
 
 	states: [
 		State {
@@ -52,6 +66,14 @@ Item {
 		State {
 			name: "viewConnection"
 			PropertyChanges {target: viewConnection; visible: true}
+		},
+		State {
+			name: "connections"
+			PropertyChanges {target: connections; visible: true}
+		},
+		State {
+			name: "news"
+			PropertyChanges {target: news; visible: true}
 		}
 	]
 }

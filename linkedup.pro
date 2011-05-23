@@ -6,10 +6,11 @@ folder_lib.target = ./
 launcher.source = ./linkedup.sh
 launcher.target = ./
 DEPLOYMENTFOLDERS = folder_01\
-					folder_lib\
-					launcher
+#					folder_lib\	#for deploying
+#					launcher	#for deploying
 
-LIBS += -L./lib/ -loauth
+#LIBS += -L./lib/ -loauth		#for deploying
+LIBS += -L/usr/local/lib -loauth
 QT += declarative\
 		xml
 

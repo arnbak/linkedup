@@ -12,5 +12,7 @@
         <file>qml/images/search-small.png</file>
         <file>qml/images/bubble-plain.png</file>
         <file>qml/images/home.png</file>
+        <file>qml/images/connections.png</file>
+        <file>qml/images/news.png</file>
     </qresource>
 </RCC>

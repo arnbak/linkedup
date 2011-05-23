@@ -20,6 +20,7 @@ public:
 
 	Q_INVOKABLE QString get_person_current();
 	Q_INVOKABLE QString get_person_by_id(QString id);
+	Q_INVOKABLE QString get_connections_current();
 	Q_INVOKABLE QString search_person(QString type, QString search);
 	Q_INVOKABLE void post_status(QString status);
 	Q_INVOKABLE void post_message(QString subject, QString message);

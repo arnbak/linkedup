@@ -4,8 +4,7 @@ import QtQuick 1.0
 
 Item {
 	id: root
-//    width: parent.width; height: parent.height
-	width: 800; height: 80
+	width: parent.width; height: row.height
 
 	signal clicked(string xml)
 
