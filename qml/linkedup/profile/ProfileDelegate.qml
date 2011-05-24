@@ -33,7 +33,7 @@ Component{
 			   anchors.margins: borderText.height
 			   image: pictureUrl
 			   fontSize: smallFontSize
-//			   buttonFontSize: fontSize
+			   buttonFontSize: smallFontSize
 		   }
 
 

@@ -20,6 +20,7 @@ Rectangle {
 			anchors.top: parent.top
 			anchors.topMargin: -5
 			onClicked:API.post_status(text)
+
 		}
 
 	}
