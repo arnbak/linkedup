@@ -43,6 +43,7 @@ Rectangle {
 		id:border
 		z: 100
 		onClicked: viewStack.state = name
+		currentTitle: "Me"
 	}
 
 

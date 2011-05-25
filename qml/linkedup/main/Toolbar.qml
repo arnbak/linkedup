@@ -4,6 +4,7 @@ Rectangle {
 	id: border
 
 	signal clicked(string name)
+	property alias currentTitle: icons.title
 
 	height: 40
 //	color: "#3399cc"
@@ -27,15 +28,36 @@ Rectangle {
 
 	Behavior on height{NumberAnimation{duration:250}}
 
+	Text {
+		property string newText
+		id: title
+		anchors.bottom: parent.bottom
+		anchors.left: parent.left
+		anchors.leftMargin: 10
+		font.pixelSize: 30
+		font.bold: true
+		color: "white"
+		font.family: "Arial"
+
+		Behavior on newText { SequentialAnimation{
+//				PropertyAnimation {target: title; property: "opacity"; to: 0; duration:250}
+//				PropertyAnimation {target: title; property: "text"; to: icons.title; duration: 0}
+//				PropertyAnimation {target: title; property: "opacity"; to: 1; duration:250}
+			} }
+	}
+
 
 	ToolbarOptions{
 		id: icons
 		opacity: 0
 		anchors.verticalCenter: parent.verticalCenter
+		onTitleChanged: title.text = icons.title
 		Behavior on opacity {NumberAnimation{duration: 250}}
 		Connections{
 			onClicked: border.clicked(name)
 		}
+		Component.onCompleted: title.text = icons.title
+
 	}
 
 	 Rectangle {
@@ -53,6 +75,8 @@ Rectangle {
 
 		 MouseArea {
 			 id: mouse_area1
+			anchors.rightMargin: -30
+			anchors.leftMargin: -30
 			 anchors.fill: parent
 			 anchors.margins: -20
 			 onClicked: {

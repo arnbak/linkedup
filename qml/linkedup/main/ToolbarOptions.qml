@@ -5,6 +5,7 @@ Flickable {
 	width: parent.width
 	height: 180
 
+	property string title
 	signal clicked (string name)
 
 	flickableDirection: Flickable.HorizontalFlick
@@ -23,16 +24,17 @@ Flickable {
 				Connections{
 					onClicked: root.clicked(name)
 				}
+				onClicked: root.title = title
 
 				Component.onCompleted: {
 					switch(index){
-					case 0: {name = "profile"; source = "qrc:///qml/images/home.png";break;}
-					case 1: {name = "search"; source = "qrc:///qml/images/searchView.png" ;break;}
-					case 2: {name = "viewConnection"; source = "qrc:///qml/images/user.png" ;break;}
-					case 3: {name = "mail"; source = "qrc:///qml/images/email.png" ;break;}
-					case 4: {name = "connections"; source = "qrc:///qml/images/connections.png" ;break;}
-					case 5: {name = "news"; source = "qrc:///qml/images/news.png" ;break;}
-					default: {name = "";break;}
+					case 0: {title = "Me"; name = "profile"; source = "qrc:///qml/images/home.png"};break
+					case 1: {title = "Search"; name = "search"; source = "qrc:///qml/images/searchView.png"};break
+					case 2: {title = "User"; name = "viewConnection"; source = "qrc:///qml/images/user.png"};break
+					case 3: {title = "Mail"; name = "mail"; source = "qrc:///qml/images/email.png"};break
+					case 4: {title = "My Connections"; name = "connections"; source = "qrc:///qml/images/connections.png"};break
+					case 5: {title = "News"; name = "news"; source = "qrc:///qml/images/news.png"};break
+					default: {name = ""};break
 					}
 				}
 			}

@@ -5,7 +5,7 @@ Item {
 	width: parent.width
 	height: parent.height
 
-	Profile{
+	Profile{ //home page
 		id: profile
 		anchors.fill: parent
 		anchors.leftMargin: 10
@@ -27,7 +27,7 @@ Item {
 		visible: false
 	}
 
-	ViewConnection{
+	ViewConnection{ //views a user's profile
 		id: viewConnection
 		anchors.fill: parent
 		anchors.margins: 10
@@ -35,11 +35,12 @@ Item {
 		onXmlChanged: root.state = "viewConnection"
 	}
 
-	SelfConnections{
+	SelfConnections{ //all connections in current users network
 		id: connections
 		anchors.fill: parent
 		anchors.margins: 10
 		visible: false
+		onClicked: viewConnection.xml = xml
 	}
 
 	News{

@@ -5,6 +5,7 @@ Rectangle {
 	id: root
 	anchors.fill: parent
 
+	signal clicked(string xml)
 
 	ListView{
 		id: list
@@ -12,7 +13,11 @@ Rectangle {
 		spacing: 10
 		anchors.fill: parent
 		model:  model
-		delegate: SelfConnectionsDelegate{}
+		delegate: SelfConnectionsDelegate{
+			Connections{
+				onClicked: root.clicked(xml)
+			}
+		}
 	}
 
 

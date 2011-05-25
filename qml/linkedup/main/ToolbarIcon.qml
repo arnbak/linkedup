@@ -6,6 +6,7 @@ Rectangle {
 	signal clicked
 	property alias source: image.source
 	property string name
+	property string title
 
     width: 100
 	height: width
