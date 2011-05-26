@@ -7,6 +7,7 @@ Item {
 	width: parent.width; height: column.height
 
 	signal clicked(string xml)
+	property string currentXML
 
 	MouseArea{
 		width: row.width
@@ -43,25 +44,55 @@ Item {
 
 			Column{
 				spacing: 10
+
+//				Section{
+//					id:experience
+//					header: "Experience"
+//					width: root.width
+//					backgroundHeight: list.height + 20
+
+//					ListView{
+//						id: list
+//						clip: true
+//						width: parent.width
+//						height: contentHeight
+
+//						anchors.top: parent.top
+//						anchors.topMargin: experience.headerSize + 10
+//						anchors.leftMargin: 10
+//						anchors.rightMargin: 10
+//						model:  UserPositionModel{xml: root.currentXML}
+//						delegate:
+//							Column{
+//								spacing: 5
+//								width: list.width
+////								Text {text: title; font.pixelSize: 25; font.family: "Arial";wrapMode: Text.Wrap; anchors.left: parent.left; anchors.right:parent.right; anchors.margins: 10}
+////								Text {text: companyName; font.pixelSize: 20;font.family: "Arial"; color: "gray"; wrapMode: Text.Wrap; anchors.left: parent.left; anchors.right:parent.right; anchors.margins: 10}
+////								Text {text: summary; font.pixelSize: 20;font.family: "Arial"; wrapMode: Text.Wrap; anchors.left: parent.left; anchors.right:parent.right; anchors.margins: 10}
+//							}
+//					}
+//				}
+
+
 				Section{
-					id:experience
-					header: "Experience"
-					text: "i did kfj ladlfkj al;sdjfa;sdfj la;sdf ja;lsdj f;lasjdflkasjd f;lasjfasldf j;lasfsdjfaks ffas jf;asfj;alsj f;lasf jthis!"
+					id:specialtiesSec
+					header: "Specialties"
+					text: specialties
 					width: root.width
+					onTextChanged: {
+						if(textHeight)
+							specialtiesSec.visible = false
+					}
 				}
 
 				Section{
-					id:educatio
-					header: "Education"
-					text: "i did kfj ladlfkj al;sdjfa;sdfj la;sdf ja;lsdj f;lasjdflkasjd f;lasjfasldf j;lasfsdjfaks ffas jf;asfj;alsj f;lasf jthis!"
+					id:interestsSec
+					header: "Interests"
+					text: interests
 					width: root.width
-				}
-
-				Section{
-					id:recommendatios
-					header: "Recommendations"
-					text: "i did kfj ladlfkj al;sdjfa;sdfj la;sdf ja;lsdj f;lasjdflkasjd f;lasjfasldf j;lasfsdjfaks ffas jf;asfj;alsj f;lasf jthis!"
-					width: root.width
+					onTextChanged: {
+						console.log(text)
+					}
 				}
 
 				Section{

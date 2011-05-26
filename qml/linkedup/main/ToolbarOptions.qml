@@ -32,7 +32,7 @@ Flickable {
 					case 1: {title = "Search"; name = "search"; source = "qrc:///qml/images/searchView.png"};break
 					case 2: {title = "User"; name = "viewConnection"; source = "qrc:///qml/images/user.png"};break
 					case 3: {title = "Mail"; name = "mail"; source = "qrc:///qml/images/email.png"};break
-					case 4: {title = "My Connections"; name = "connections"; source = "qrc:///qml/images/connections.png"};break
+					case 4: {title = "Connections"; name = "connections"; source = "qrc:///qml/images/connections.png"};break
 					case 5: {title = "News"; name = "news"; source = "qrc:///qml/images/news.png"};break
 					default: {name = ""};break
 					}

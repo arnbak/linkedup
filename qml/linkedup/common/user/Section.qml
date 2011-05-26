@@ -12,6 +12,7 @@ Item {
 	property alias header: header.text
 
 	property alias backgroundColor: background.color
+	property alias backgroundHeight: background.height
 
 	property alias textSize: content.fontSize
 	property alias textColor: content.color
@@ -19,25 +20,25 @@ Item {
 	property alias textHeight: content.height
 
  Rectangle {
-	 id: background
-	 gradient: Gradient {
-		 GradientStop {
-			 position: 0.00;
-			 color: "#6aafd1";
-		 }
-		 GradientStop {
-			 position: 1.00;
-			 color: "#3399cc";
-		 }
+	id: background
+	gradient: Gradient {
+	 GradientStop {
+		 position: 0.00;
+		 color: "#6aafd1";
 	 }
-	 radius: 10
-	  border.color: "#000000"
-	  border.width: 1
+	 GradientStop {
+		 position: 1.00;
+		 color: "#3399cc";
+	 }
+	}
+	radius: 10
+	border.color: "#000000"
+	border.width: 1
 	anchors.left: parent.left
 	anchors.right: parent.right
 	anchors.top: parent.top
 	height: content.height + 20
-	  anchors.topMargin: header.height
+	anchors.topMargin: header.height
 
 	 Text {
 		 id: content
@@ -52,6 +53,10 @@ Item {
 		anchors.left: parent.left
 		anchors.right: parent.right
 		 font.pixelSize: fontSize
+//		 onTextChanged: {
+//			 if(text === "")
+//				 item.visible = false
+//		 }
 	 }
  }
 
