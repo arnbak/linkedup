@@ -1,0 +1,2 @@
+  * make profile components vanish when empty
+  * make the list the size of the currently shown item, not just expand to the biggest

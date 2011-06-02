@@ -7,12 +7,14 @@
         <file>qml/images/down.png</file>
         <file>qml/images/profile-picture.png</file>
         <file>qml/images/user.png</file>
-        <file>qml/images/searchView.png</file>
         <file>qml/images/email.png</file>
         <file>qml/images/search-small.png</file>
         <file>qml/images/bubble-plain.png</file>
         <file>qml/images/home.png</file>
         <file>qml/images/connections.png</file>
         <file>qml/images/news.png</file>
+        <file>qml/images/previous.png</file>
+        <file>qml/images/previous-small.png</file>
+        <file>qml/images/link.png</file>
     </qresource>
 </RCC>

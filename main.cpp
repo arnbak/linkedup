@@ -21,13 +21,14 @@ int main(int argc, char *argv[])
 	viewer.rootContext()->setContextProperty("OAuth", &auth);
 	viewer.rootContext()->setContextProperty("Settings", &settings);
 	viewer.rootContext()->setContextProperty("API", &api);
-    viewer.setMainQmlFile(QLatin1String("qml/linkedup/main.qml"));
+	viewer.setMainQmlFile(QLatin1String("qml/linkedup/main.qml"));
 
 	QObject *rootObject = dynamic_cast<QObject*>(viewer.rootObject());
 	QObject::connect(&auth, SIGNAL(authorized()), rootObject, SIGNAL(authorized()));
 
 #ifdef Q_WS_MAEMO_5
-	viewer.showFullScreen();
+//	viewer.showFullScreen();
+	viewer.showExpanded();
 #else
 	viewer.showExpanded();
 #endif

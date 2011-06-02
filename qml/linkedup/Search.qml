@@ -1,39 +1,55 @@
 import QtQuick 1.0
 import "search"
+import "components"
 
-Rectangle {
+Window {
 	id: root
-	width: 800; height: 480
-//	width: parent.width; height: parent.height
+	width: parent.width; height: parent.height
+	borderTitle: "Search Results"
+	busy: true
 
-	signal clicked(string xml)
 
-	SearchBar{
-		id: searchBar
-		z: 100
-		anchors.top: parent.top
-		anchors.margins: 10
-		onResultsChanged: list.model.reload()
+	onParamChanged: {
+		get(API.search_person(type, param))
 	}
 
+	function get(url){
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function(){
+			if(xmlHttp.readyState == 4){
+				model.xml = xmlHttp.responseText;
+				root.busy = false
+			}
+
+		}
+		xmlHttp.open( "GET", url, true );
+		xmlHttp.send( null );
+	}
+
+
+	property string param
+	property string type
 
 	ListView{
 		id: list
 		clip: true
 		spacing: 10
 		anchors.fill: parent
-		anchors.topMargin: searchBar.height + searchBar.anchors.margins + 10
+		anchors.topMargin: borderHeight
 		model:  model
 		delegate: SearchDelegate{
-			Connections{
-				onClicked: root.clicked(xml)
+			onClicked: {
+				var comp = Qt.createComponent("Profile.qml")
+				var object = comp.createObject(root.parent)
+				object.profileID = profileID
+				object.caller = root
+				root.state = "hidden"
 			}
 		}
 	}
 
 	SearchModel{
 		id: model
-		xml: searchBar.results
 	}
 
 

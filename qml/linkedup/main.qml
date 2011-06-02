@@ -3,27 +3,56 @@ import "main"
 
 Rectangle {
 	id: root
-	width: 800
-	height: 480
+	width: 480
+	height: 800
 
 	Component.onCompleted: {
-		if(Settings.get("oauth_token") == "" || Settings.get("oauth_token_secret") == "")
+		updateLoader.sourceComponent = updateComp
+		if(Settings.get("oauth_token") === "" || Settings.get("oauth_token_secret") === "")
 			getAuthorization()
 	}
 
-	property alias borderHeight: border.height
 	signal authorized
 	function getAuthorization(){
 		var object = loginScreen.createObject(root)
 		object.z = 100
 	}
 
-	ViewStack{
-		id: viewStack
-		anchors.fill: parent
-		anchors.topMargin: borderHeight
-		Component.onCompleted: state = "profile"
+	Home{
+		id: home
+		onClicked: state = "hidden"
+		onStateChanged: {
+			if(state === "hidden")
+				updateLoader.shown = "down"
+			else
+				updateLoader.shown = ""
+		}
 	}
+
+
+	Loader{
+		id: updateLoader
+
+		property string shown
+		z:1
+		width: parent.width
+		anchors.bottom: parent.bottom
+	}
+
+	Component{
+		id: updateComp
+		Status{
+			id: updater
+			profileID: "~"
+			state: updateLoader.state
+			shown: updateLoader.shown
+
+		}
+	}
+
+
+
+
 
 	/**Screen for authorizing the application
 	  This screen is launched if no token is found for
@@ -33,17 +62,8 @@ Rectangle {
 		id: loginScreen
 		LoginScreen{
 			anchors.fill: parent
-			anchors.topMargin: borderHeight
 			Component.onCompleted: root.authorized.connect(authorized)
 		}
-	}
-
-
-	Toolbar{
-		id:border
-		z: 100
-		onClicked: viewStack.state = name
-		currentTitle: "Me"
 	}
 
 

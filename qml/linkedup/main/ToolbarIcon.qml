@@ -1,35 +1,39 @@
 import QtQuick 1.0
+import "../components"
 
-Rectangle {
+Item {
 	id: root
 
 	signal clicked
-	property alias source: image.source
+	property alias source: button.iconSource
 	property string name
 	property string title
 
-    width: 100
-	height: width
-	color: "#32000000"
-	radius: 5
-	border.color: "#000000"
+	height: 100
+	width: height
 
-	Image {
-		id: image
+	Button{
 		anchors.fill: parent
+		id: button
 		smooth: true
-	}
-
-
-	MouseArea {
-		id: mouse_area
-		anchors.fill: parent
-		z: 100
 		Connections{
 			onClicked: root.clicked()
 		}
 	}
 
+	BusyIndicator{
+		id: busy
+		running: false
+		anchors.bottom: parent.bottom
+		anchors.right: parent.right
+	}
+
+	states: [
+		State {
+			name: "busy"
+			PropertyChanges {target: busy; running: true}
+		}
+	]
 
 
 }

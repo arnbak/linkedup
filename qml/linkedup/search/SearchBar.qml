@@ -8,9 +8,10 @@ Rectangle {
 	anchors.right: parent.right
 	anchors.rightMargin: 20
 
-	property string results
+	property string param
+	property string type
 
-	Button {
+	OldButton {
 		id: button
 		width: parent.height
 		radius: 0
@@ -20,7 +21,11 @@ Rectangle {
 		anchors.rightMargin: 0
 		anchors.verticalCenter: parent.verticalCenter
 		iconUrl: "qrc:///qml/images/search-small.png"
-		onClicked: root.results = API.search_person(searchbaroptions.text, textInput.text)
+//		onClicked: root.results = API.search_person(searchbaroptions.text, textInput.text)
+		onClicked: {
+			root.param = textInput.text
+			root.type = searchbaroptions.text
+		}
 
 	}
 

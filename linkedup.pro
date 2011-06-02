@@ -9,6 +9,7 @@ DEPLOYMENTFOLDERS = folder_01\
 					folder_lib\	#for deploying
 					launcher	#for deploying
 
+#LIBS += -L/usr/lib -loauth
 LIBS += -L./lib/ -loauth		#for deploying
 #LIBS += -L/usr/local/lib -loauth
 QT += declarative\
@@ -51,4 +52,5 @@ RESOURCES += \
     resources.qrc
 
 OTHER_FILES += \
-    status.xml
+    status.xml \
+    TODO.txt

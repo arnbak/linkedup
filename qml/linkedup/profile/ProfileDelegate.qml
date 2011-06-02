@@ -1,44 +1,51 @@
 import QtQuick 1.0
 
-Component{
-	id: component
+Item{
+	id: root
+	width: parent.width
+	height: rootColumn.height
 
-	Flickable{
-		id: root
-		width: parent.width; height: parent.height
-//		width: 800; height: 480
+	SystemPalette{id: palette}
 
-		/*Color and font properties*/
-		property string fontStyle: "Arial"
-		property int fontSize: 35
-		property int smallFontSize: fontSize * .8
-		property string fontColor: "#006699"
-
-		boundsBehavior: Flickable.StopAtBounds
-
-		Text {
-		   id: borderText
-		   height: 20
+   Column{
+		id: rootColumn
+		width: root.width
+		spacing: 20
+	   Row{
+		   id: row
+		   spacing: 10
 		   width: parent.width
-		   color: fontColor
-		   text: "Welcome back " + firstName + "!"
-		   anchors.topMargin: 10
-		   font.bold: true
-		   font.family: fontStyle
-		   font.pixelSize: fontSize
 
-		   StatusBubble{
-			   id: status
-			   anchors.top: parent.bottom
-			   anchors.margins: borderText.height
-			   image: pictureUrl
-			   fontSize: smallFontSize
-			   buttonFontSize: smallFontSize
+		   Image {
+			   id: image
+			   height:  100
+			   width: height
+			   source: pictureUrl
+			   Component.onCompleted: {
+				   if(!pictureUrl)
+					   source = "qrc:///qml/images/profile-picture.png"
+			   }
+		   }
+
+		   Column{
+			   width: parent.width - image.width
+
+			   Text {font.pixelSize: 20; font.family: "Arial"; wrapMode: Text.Wrap; width: parent.width-10; color: palette.text; text: firstName + " " + lastName}
+			   Text {font.pixelSize: 18; font.family: "Arial"; wrapMode: Text.Wrap; width: parent.width-10; color: palette.text; text: headline}
+			   Text {font.pixelSize: 16; font.family: "Arial"; wrapMode: Text.Wrap; width: parent.width-10; color: palette.text; text: location}
+			   Text {font.pixelSize: 16; font.family: "Arial"; wrapMode: Text.Wrap; width: parent.width-10; color: palette.text; text: industry}
+
+
 		   }
 
 
-		}
-	}
+	   }
+
+
+
+
+   }
+
 
 
 }

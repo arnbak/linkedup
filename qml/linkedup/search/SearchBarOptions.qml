@@ -7,11 +7,14 @@ Rectangle{
 	height: parent.height
 
 	property alias text: selected.text
+
+	SystemPalette{id: palette}
+
 	Rectangle{
 		id: clipper
 		width: parent.width
 		height: parent.height * 8
-		color: "white"
+		color: palette.light
 		z: 100
 		anchors.bottom: parent.top
 	}
