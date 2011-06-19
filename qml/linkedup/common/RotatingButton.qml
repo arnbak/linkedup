@@ -14,12 +14,7 @@ Rectangle {
 	   anchors.leftMargin: -30
 		anchors.fill: parent
 		anchors.margins: -20
-		onClicked: {
-			if(button.state == "down")
-				button.state = ""
-			else
-				button.state = "down"
-		}
+		onClicked: button.state = button.state === "" ? "down" : ""
 	}
 
 	 Image {

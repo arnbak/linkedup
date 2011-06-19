@@ -1,11 +1,15 @@
 import QtQuick 1.0
 import "../"
+import "../common"
 
 Item {
 	id: root
 	width: parent.width; height: col.height
 
+	signal requestStarted
 	signal clicked(string profileID)
+	signal likeSent(string status)
+	signal commentSent(string status)
 	SystemPalette{id: palette}
 
 	Component.onCompleted: {
@@ -14,6 +18,25 @@ Item {
 			root.height = 0
 //			root.destroy()
 		}
+	}
+
+	function like(list){
+		var xmlHttp = new XMLHttpRequest();
+//		var list = API.post_share(status.text)
+		var url = list[0]
+		var header = list[1]
+		var body = list[2]
+
+		xmlHttp.onreadystatechange = function(){
+			if(xmlHttp.readyState == 4){
+				console.log(xmlHttp.responseText)
+			}
+		}
+		xmlHttp.open( "PUT", url, true );
+		xmlHttp.setRequestHeader("Content-Type", "text/xml")
+		xmlHttp.setRequestHeader("Host", "api.linkedin.com");
+		xmlHttp.setRequestHeader("Authorization", header);
+		xmlHttp.send( body );
 	}
 
 //	MouseArea{
@@ -79,6 +102,12 @@ Item {
 						if(!newPictureUrl)
 							source = "qrc:///qml/images/profile-picture.png"
 					}
+					MouseArea{
+						anchors.fill: parent
+						onClicked: {
+							root.clicked(newId)
+						}
+					}
 				}
 
 				Column{
@@ -87,6 +116,34 @@ Item {
 					Text {font.pixelSize: 16; font.family: "Arial"; color: palette.text; text: newIndustry}
 				}
 
+
+			}
+
+			Row{
+				id: shareRow
+				LikeButton{
+					id: like
+					liked: isLiked === "true" ? true : false
+					likable: isLikable === "true" ? true : false
+					key: updateKey
+					onRequestStarted: root.requestStarted()
+					onLikeSent: root.likeSent(status)
+				}
+
+				CommentDialog{
+					id: commentBox
+					commentable: isCommentable === "true" ? true : false
+					key: updateKey
+					expandedWidth: root.width
+					onRequestStarted: root.requestStarted()
+					onCommentSent: root.commentSent(status)
+				}
+
+
+			}
+
+			Rectangle{
+				id: seperator
 
 			}
 

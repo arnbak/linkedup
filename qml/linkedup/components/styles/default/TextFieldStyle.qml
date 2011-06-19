@@ -33,7 +33,7 @@ QtObject {
         Item {
             property color textColor: "#444"
             property color backgroundColor: "white"
-            property int fontPixelSize: 14
+			property int fontPixelSize: 22
             property bool fontBold: false
             property int passwordEchoMode: TextInput.PasswordEchoOnEdit
         }

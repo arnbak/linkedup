@@ -8,6 +8,8 @@ import "./behaviors"    // TextEditMouseBehavior
 Item {  //mm Does this need to be a FocusScope or not?  //needs to be a FocusScope as long as TextInput is not in e.g. a Flickable's scope
     id: textField
 
+	signal accepted
+
     property alias text: textInput.text
     property alias font: textInput.font
 
@@ -59,6 +61,9 @@ Item {  //mm Does this need to be a FocusScope or not?  //needs to be a FocusSco
 
     TextInput { // see QTBUG-14936
         id: textInput
+
+		onAccepted: textField.accepted() //added by me
+
         font.pixelSize: _hints.fontPixelSize
         font.bold: _hints.fontBold
 

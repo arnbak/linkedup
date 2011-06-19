@@ -1,0 +1,4 @@
+  * can now click on your connection's connections in the NewConnections page
+  * profile screen title is now user name
+  * profile delegate text increased
+  * releasing to the maemo repository

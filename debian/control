@@ -1,0 +1,87 @@
+Source: linkedup
+Section: user/network
+Priority: optional
+Maintainer: Anthony Naddeo <anthony.naddeo@gmail.com>
+Build-Depends: debhelper (>= 5), libqt4-dev, qtquickcompat, libqt4-bearer-hotfix
+Standards-Version: 3.7.3
+
+Package: linkedup
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Mobile LinkedIn application for Maemo and Meego
+ Currently in development, this client aims to be all you need
+ to stay connected with LinkedIn on Maemo and Meego.
+XSBC-Bugtracker: http://code.google.com/p/linkedup/issues/list
+XB-Maemo-Icon-26: 
+ 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

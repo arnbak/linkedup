@@ -3,7 +3,7 @@ import Qt 4.7
 Item {
     id: behavior
 
-    signal clicked
+	signal clicked(bool wasHeld)
 	signal pressAndHold
     property bool pressed: false    // Can't be alias of mouseArea.pressed because the latter is read-only
     property alias containsMouse: mouseArea.containsMouse
@@ -25,7 +25,7 @@ Item {
                 behavior.pressed = false
                 if(behavior.checkable)
                     behavior.checked = !behavior.checked;
-                behavior.clicked()
+				behavior.clicked(mouse.wasHeld)
             }
         }
 		onPressAndHold: behavior.pressAndHold()

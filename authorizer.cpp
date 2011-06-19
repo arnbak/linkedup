@@ -3,8 +3,8 @@
 #include <QDesktopServices>
 #include <QSettings>
 
-//#include "iostream"
-//using namespace std;
+#include "iostream"
+using namespace std;
 
 extern
 
@@ -22,17 +22,18 @@ Authorizer::~Authorizer(){
 	delete signed_url;
 }
 
-void Authorizer::request_token(){
+QString Authorizer::request_token(){
 
 	//generate request url
 	char* req_url = NULL;
 	req_url = oauth_sign_url2(REQUEST_URL, NULL, OA_HMAC, "GET", CONSUMER_KEY, CONSUMER_SECRET, NULL, NULL);
 	signed_url = new QString(req_url);
 
-	//make the request
-	char* reply;
-	reply = oauth_http_get2(req_url, NULL, NULL);
+//	delete req_url;
+	return *signed_url;
+}
 
+void Authorizer::generate_access_url(QString reply){
 	//create a qurl to parse to token id
 	QUrl tmpUrl("https://api.linkedin.com/uas/oauth/authorize?" + QString(reply));
 	req_token = new QString(tmpUrl.queryItemValue("oauth_token")); //save token for access
@@ -42,10 +43,12 @@ void Authorizer::request_token(){
 
 	//launch browser to get users authentication
 	QDesktopServices::openUrl(QUrl(finalStr));
-
 }
 
-void Authorizer::access_token(QString pin){
+
+
+
+QString Authorizer::access_token(QString pin){
 
 	if(req_token && req_secret){
 		QString accessUrl(ACCESS_URL);
@@ -59,6 +62,10 @@ void Authorizer::access_token(QString pin){
 											   CONSUMER_SECRET,
 											   req_token->toStdString().c_str(),
 											   req_secret->toStdString().c_str()));
+
+		return access_request;
+
+
 
 		QString reply(oauth_http_get2(access_request.toStdString().c_str(), NULL, NULL));
 		QUrl tmpUrl("https://api.linkedin.com/uas/oauth/authorize?" + reply);
@@ -75,4 +82,15 @@ void Authorizer::access_token(QString pin){
 	}
 
 
+}
+
+void Authorizer::store_key(QString reply){
+	cout << "asdfasdf" << endl;
+
+	QUrl tmpUrl("https://api.linkedin.com/uas/oauth/authorize?" + reply);
+
+	QSettings settings(QSettings::UserScope, "linkedup", "linkedup");
+	settings.setValue("oauth_token", tmpUrl.queryItemValue("oauth_token"));
+	settings.setValue("oauth_token_secret", tmpUrl.queryItemValue("oauth_token_secret"));
+	emit authorized();
 }

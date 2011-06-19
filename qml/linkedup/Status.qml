@@ -6,6 +6,7 @@ Item {
 	id: root
 	width: parent.width; height: list.height
 
+
 	onProfileIDChanged: {
 		get(API.get_person_by_id(profileID))
 	}
@@ -25,6 +26,8 @@ Item {
 	property string profileXML
 	property alias shown: button.state
 	signal posted
+
+	SystemPalette{id: palette}
 
 	XmlListModel{
 		id:model
@@ -46,6 +49,13 @@ Item {
 		width: 50
 		anchors.bottom: list.top
 		anchors.horizontalCenter: parent.horizontalCenter
+	}
+
+	Rectangle{
+		id: background
+		anchors.fill: list
+		z: -1
+		color:  palette.dark
 	}
 
 	ListView{

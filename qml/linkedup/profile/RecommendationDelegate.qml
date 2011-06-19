@@ -21,8 +21,8 @@ Item {
 			anchors.right: parent.right
 			anchors.verticalCenter: parent.verticalCenter
 			anchors.margins: 10
-			Text {font.pixelSize: 18; font.family: "Arial"; wrapMode: Text.Wrap; width: 480; color: palette.text; text: firstName+" "+lastName}
-			Text {font.pixelSize: 16; font.family: "Arial"; wrapMode: Text.Wrap; width: 480; color: palette.text; text: recommendationType}
+			Text {font.pixelSize: 22;  wrapMode: Text.Wrap; width: parent.width; color: palette.text; text: firstName+" "+lastName}
+			Text {font.pixelSize: 20;  wrapMode: Text.Wrap; width: parent.width; color: palette.text; text: recommendationType}
 
 		}
 	}

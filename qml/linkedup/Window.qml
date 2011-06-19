@@ -18,16 +18,77 @@ Rectangle {
 	property alias borderHeight: border.height
 	property alias borderTitle: title.text
 	property alias busy: loading.running
+	property bool isRoot: false
 	property SystemPalette palette: palette
 	Behavior on x{NumberAnimation{duration:  250}}
 
 	SystemPalette{id: palette}
 	color: palette.light
 
+	signal getFinished(string xml, string statusCode, string statusText)
+	signal deleteFinished(string xml, string statusCode, string statusText)
+	signal postFinished(string xml, string statusCode, string statusText)
+	signal back()
+
+	function get(url){
+		root.busy = true
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function(){
+			if(xmlHttp.readyState == 4){
+				root.busy = false
+				root.getFinished(xmlHttp.responseText, xmlHttp.status, xmlHttp.statusText)
+//				console.log("\n\n"+xmlHttp.status)
+//				console.log(xmlHttp.statusText)
+//				console.log(xmlHttp.responseText)
+			}
+		}
+		xmlHttp.open( "GET", url, true );
+		xmlHttp.send( null );
+	}
+
+	function httpDelete(url){
+		root.busy = true
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function(){
+			if(xmlHttp.readyState == 4){
+				root.busy = false
+				root.deleteFinished(xmlHttp.responseText, xmlHttp.status, xmlHttp.statusText)
+			}
+		}
+		xmlHttp.open( "DELETE", url );
+		xmlHttp.send( null );
+	}
+
+	function post(list){
+		root.busy = true
+		var xmlHttp = new XMLHttpRequest();
+//		var list = API.post_share(status.text)
+		var url = list[0]
+		var header = list[1]
+		var body = list[2]
+
+		xmlHttp.onreadystatechange = function(){
+			if(xmlHttp.readyState == 4){
+				root.busy = false
+				root.postFinished(xmlHttp.responseText, xmlHttp.status, xmlHttp.statusText)
+			}
+		}
+		xmlHttp.open( "POST", url, true );
+		xmlHttp.setRequestHeader("Content-Type", "text/xml")
+		xmlHttp.setRequestHeader("Host", "api.linkedin.com");
+		xmlHttp.setRequestHeader("Authorization", header);
+		xmlHttp.send( body );
+	}
+
 	function close(){
-		root.state = "new"
-		caller.state = ""
-		root.destroy(500)
+		if(!isRoot){
+			root.state = "new"
+			caller.state = ""
+			root.destroy(2000)
+		}else{
+			Notifier.minimize()
+		}
+
 	}
 
 	Rectangle {
@@ -53,7 +114,7 @@ Rectangle {
 
 		Button{
 			id: back
-			iconSource: "qrc:///qml/images/previous-small.png"
+			iconSource: isRoot ? "qrc:///qml/images/windows.png" : "qrc:///qml/images/previous-small.png"
 			anchors.top: parent.top
 			anchors.left: parent.left
 			onClicked: root.close()
@@ -62,6 +123,28 @@ Rectangle {
 				while(par.caller){
 					par.close()
 					par = par.caller
+				}
+			}
+			Connections{
+				onClicked: root.back()
+			}
+		}
+
+		Loader{
+			id: quitButton
+			anchors.top: parent.top
+			anchors.right: parent.right
+			Component.onCompleted: {
+				if(isRoot){
+					sourceComponent = quitComp
+				}
+			}
+
+			Component{
+				id: quitComp
+				Button{
+					iconSource: "qrc:///qml/images/x.png"
+					onClicked: Qt.quit()
 				}
 			}
 		}

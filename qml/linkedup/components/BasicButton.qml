@@ -11,7 +11,7 @@ Item {
     width: Math.max(minimumWidth, backgroundComponent.item.width)
     height: Math.max(minimumHeight, backgroundComponent.item.height)
 
-    signal clicked
+	signal clicked(bool wasHeld)
 	signal pressAndHold
     property alias pressed: behavior.pressed
     property alias containsMouse: behavior.containsMouse
@@ -33,7 +33,7 @@ Item {
     ButtonBehavior {
         id: behavior
         anchors.fill: parent
-        onClicked: button.clicked()
+		onClicked: button.clicked(wasHeld)
 		onPressAndHold: button.pressAndHold()
     }
 

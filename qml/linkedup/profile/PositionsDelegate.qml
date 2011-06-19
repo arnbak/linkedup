@@ -27,11 +27,12 @@ Item {
 			anchors.right: parent.right
 			anchors.verticalCenter: parent.verticalCenter
 			anchors.margins: 10
-			Text {font.pixelSize: 20; font.family: "Arial"; wrapMode: Text.Wrap; width: parent.width; color: palette.text; text: company}
-			Text {font.pixelSize: 16; font.family: "Arial"; wrapMode: Text.Wrap; width: parent.width; color: palette.text; text: title}
-			Text {font.pixelSize: 16; font.family: "Arial"; wrapMode: Text.Wrap; width: parent.width; color: palette.text; text: startDate + " - " + endCurrent}
 
-			Text {font.pixelSize: 16; font.family: "Arial"; wrapMode: Text.Wrap; width: parent.width; color: palette.text; text: summary}
+			Text {font.pixelSize: 22;  wrapMode: Text.Wrap; width: border.width-20; color: palette.text; text: "<b>"+company+"</b>"}
+			Text {font.pixelSize: 20;  wrapMode: Text.Wrap; width: border.width-20; color: palette.text; text: title}
+			Text {font.pixelSize: 20;  wrapMode: Text.Wrap; width: border.width-20; color: palette.text; text: startDate + " - " + endCurrent}
+
+			Text {font.pixelSize: 20;  wrapMode: Text.Wrap; width: border.width-20; color: palette.text; text: summary}
 
 
 

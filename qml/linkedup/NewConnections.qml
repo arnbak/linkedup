@@ -4,28 +4,12 @@ import "components"
 
 Window {
 	id: root
-	busy: true
 	borderTitle: "New Connections"
 
+	Component.onCompleted: get(API.get_updates_current())
+	onGetFinished: model.xml = xml
 
-	Component.onCompleted: {
-		get(API.get_updates_current())
-	}
-
-	function get(url){
-		var xmlHttp = new XMLHttpRequest();
-		xmlHttp.onreadystatechange = function(){
-			if(xmlHttp.readyState == 4){
-				model.xml = xmlHttp.responseText;
-				root.busy = false
-			}
-
-
-		}
-		xmlHttp.open( "GET", url, true );
-		xmlHttp.send( null );
-	}
-
+	NewConnectionsModel{id: model}
 
 	ListView{
 		id: list
@@ -34,7 +18,11 @@ Window {
 		anchors.fill: parent
 		anchors.topMargin: borderHeight
 		model:  model
+		cacheBuffer: 10
 		delegate: NewConnectionsDelegate{
+			onRequestStarted: root.busy = true
+			onLikeSent: root.busy = false
+			onCommentSent: root.busy = false
 			onClicked: {
 				var comp = Qt.createComponent("Profile.qml")
 				var object = comp.createObject(root.parent)
@@ -47,7 +35,5 @@ Window {
 	}
 
 
-	NewConnectionsModel{
-		id: model
-	}
+
 }

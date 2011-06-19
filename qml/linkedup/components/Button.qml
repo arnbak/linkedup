@@ -19,6 +19,7 @@ BasicButton {
     height: Math.max(minimumHeight,
                      labelComponent.item.height + topMargin + bottomMargin)
 
+
     minimumWidth: defaultStyle.minimumWidth
     minimumHeight: defaultStyle.minimumHeight
 

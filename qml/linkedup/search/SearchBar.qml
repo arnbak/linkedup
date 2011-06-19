@@ -10,6 +10,7 @@ Rectangle {
 
 	property string param
 	property string type
+	signal clicked()
 
 	OldButton {
 		id: button
@@ -23,8 +24,9 @@ Rectangle {
 		iconUrl: "qrc:///qml/images/search-small.png"
 //		onClicked: root.results = API.search_person(searchbaroptions.text, textInput.text)
 		onClicked: {
-			root.param = textInput.text
 			root.type = searchbaroptions.text
+			root.param = textInput.text
+			root.clicked()
 		}
 
 	}

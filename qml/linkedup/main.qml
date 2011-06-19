@@ -1,54 +1,99 @@
 import QtQuick 1.0
 import "main"
+import QtWebKit 1.0
 
-Rectangle {
+Item {
 	id: root
 	width: 480
 	height: 800
 
+	property string updaterShown
+
 	Component.onCompleted: {
-		updateLoader.sourceComponent = updateComp
+
 		if(Settings.get("oauth_token") === "" || Settings.get("oauth_token_secret") === "")
 			getAuthorization()
+		else{
+			createHome()
+		}
+
 	}
+
+	/**
+	  Downloads the companies that the user is currently following
+	  and hashes them in the User class. Linkedin does not report
+	  whether the user is currently following a company when looking
+	  at that company, so this is how I can determine before hand.
+	  */
+	function setCompaniesFollowed(url){
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function(){
+			if(xmlHttp.readyState == 4){
+				User.setCompaniesFollowed(xmlHttp.responseText)
+			}
+		}
+		xmlHttp.open( "GET", url, true );
+		xmlHttp.send( null );
+	}
+
+	/**
+	  Same concept as the setCompaniesFollowed function, but
+	  instead for dealing with the current member connections
+	  */
+	function setPeopleConnections(url){
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function(){
+			if(xmlHttp.readyState == 4){
+				User.setPeopleConnections(xmlHttp.responseText)
+			}
+		}
+		xmlHttp.open( "GET", url, true );
+		xmlHttp.send( null );
+	}
+
 
 	signal authorized
 	function getAuthorization(){
 		var object = loginScreen.createObject(root)
 		object.z = 100
-	}
-
-	Home{
-		id: home
-		onClicked: state = "hidden"
-		onStateChanged: {
-			if(state === "hidden")
-				updateLoader.shown = "down"
-			else
-				updateLoader.shown = ""
-		}
+//		loginLoader.sourceComponent = webViewPage
 	}
 
 
-	Loader{
-		id: updateLoader
+	onAuthorized: createHome()
 
-		property string shown
-		z:1
-		width: parent.width
-		anchors.bottom: parent.bottom
+	function createHome(){
+		var homeObj = homeComp.createObject(root)
+		var statusObj = statusComp.createObject(root)
+		setCompaniesFollowed(API.get_person_following_company())
+		setPeopleConnections(API.get_connections_by_id("~"))
 	}
 
 	Component{
-		id: updateComp
-		Status{
-			id: updater
-			profileID: "~"
-			state: updateLoader.state
-			shown: updateLoader.shown
+		id: homeComp
+		Home{
+			id: home
+			onClicked: state = "hidden"
+			onStateChanged: {
+				root.updaterShown = home.state === "hidden" ? "down":""
 
+			}
 		}
 	}
+
+	Component{
+		id: statusComp
+		Status{
+			id: updater
+			z:100
+			profileID: "~"
+			anchors.bottom: parent.bottom
+			width: parent.width
+			shown: root.updaterShown
+		}
+	}
+
+
 
 
 
@@ -65,6 +110,7 @@ Rectangle {
 			Component.onCompleted: root.authorized.connect(authorized)
 		}
 	}
+
 
 
 

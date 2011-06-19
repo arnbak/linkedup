@@ -8,24 +8,14 @@ Window {
 	borderTitle: "Connections"
 	signal clicked(string xml)
 
-	Component.onCompleted: {
-		get(API.get_connections_current())
+	onProfileIDChanged: get(API.get_connections_by_id(profileID))
+	onGetFinished: {
+		model.xml = xml
+		root.busy = false
 	}
 
-	function get(url){
-		var xmlHttp = new XMLHttpRequest();
-		xmlHttp.onreadystatechange = function(){
-			if(xmlHttp.readyState == 4){
-				model.xml = xmlHttp.responseText;
-				root.busy = false
-			}
 
-
-		}
-		xmlHttp.open( "GET", url, true );
-		xmlHttp.send( null );
-	}
-
+	property string profileID
 
 	ListView{
 		id: list

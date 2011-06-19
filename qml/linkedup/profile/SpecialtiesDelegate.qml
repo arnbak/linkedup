@@ -5,14 +5,13 @@ Item {
 	height: rootColumn.height + 20
 
 
-
 	Rectangle{
 		id: border
 		anchors.left: parent.left
 		anchors.right: parent.right
 		anchors.margins: 10
-		height: parent.height
-		color: palette.dark
+		height: rootColumn.height
+		color: "transparent"
 		radius: 10
 
 		Column{
@@ -22,7 +21,8 @@ Item {
 			anchors.verticalCenter: parent.verticalCenter
 			anchors.margins: 10
 
-			Text {font.pixelSize: 16; font.family: "Arial"; wrapMode: Text.Wrap; width: parent.width; color: palette.text; text: specialties}
+			//mm if the width of this text item was parent.width, it would increase the height dramatically on a maemo device.... bug
+			Text {font.pixelSize: 20; wrapMode: Text.Wrap; width: border.width-20; color: palette.text; text: specialties}
 
 		}
 	}

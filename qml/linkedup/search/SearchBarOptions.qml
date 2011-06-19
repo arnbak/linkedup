@@ -70,7 +70,7 @@ Rectangle{
 		State {
 			name: "show"
 			PropertyChanges {
-				target: options; anchors.bottomMargin: -8 * root.height}
+				target: options; anchors.bottomMargin: ((-repeater.model)-1) * root.height}
 		}
 	]
 
@@ -79,7 +79,8 @@ Rectangle{
 		anchors.bottom: parent.top
 		Behavior on anchors.bottomMargin{PropertyAnimation{easing.type: Easing.InOutCubic;duration: 500 }}
 		Repeater{
-			model: 7
+			id: repeater
+			model: 2
 
 			Rectangle{
 				color: "lightgray"
@@ -112,9 +113,9 @@ Rectangle{
 					Component.onCompleted:{
 						switch(index){
 						case 0: text = "Profile";break;
-						case 1: text = "Updates";break;
-						case 2: text = "Jobs";break;
-						case 3: text = "Companies";break;
+						case 1: text = "Companies";break;
+						case 2: text = "Updates";break;
+						case 3: text = "Jobs";break;
 						case 4: text = "Answers";break;
 						case 5: text = "Inbox";break;
 						case 6: text = "Groups";break;

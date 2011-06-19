@@ -21,7 +21,7 @@ Item {
 			anchors.right: parent.right
 			anchors.verticalCenter: parent.verticalCenter
 			anchors.margins: 10
-			Text {font.pixelSize: 16; font.family: "Arial"; wrapMode: Text.Wrap; width: root.width; color: palette.text; text: summary}
+			Text {font.pixelSize: 20; wrapMode: Text.Wrap; width: border.width-20; color: palette.text; text: summary}
 
 		}
 	}

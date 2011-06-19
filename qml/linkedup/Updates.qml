@@ -4,29 +4,62 @@ import "components"
 
 Window {
 	id: root
+	state:  "profile"
+	border: false
 
-	borderTitle: "Updates"
-	signal clicked(string xml)
+	SystemPalette{id: palette}
 
 
-
-	ListView{
-		id: list
-		clip: true
-		spacing: 20
+	NewConnections{
+		id: connections
 		anchors.fill: parent
-		anchors.topMargin: borderHeight
-		model:  model
-		delegate: UpdatesDelegate{
-//			Connections{
-//				onClicked: root.clicked(xml)
-//			}
+		anchors.bottomMargin: buttonBox.height
+		visible: false
+		caller: root.caller
+		onBack: root.close()
+	}
+
+	Shares{
+		id: shares
+		anchors.fill: parent
+		anchors.bottomMargin: buttonBox.height
+		visible: false
+		caller: root.caller
+		onBack: root.close()
+	}
+
+
+	Rectangle{
+		id: buttonBox
+		width: parent.width
+		height: row.height
+		color: palette.dark
+		anchors.bottom: parent.bottom
+		Row{
+			id: row
+			Button{
+				id: profileButton
+				iconSource: "qrc:///qml/images/user-small.png"
+				onClicked: root.state = "profile"
+			}
+			Button{
+				id: connectionsButton
+				iconSource: "qrc:///qml/images/link-small.png"
+				onClicked: root.state = "connections"
+			}
 		}
-	}
 
 
-	UpdatesModel{
-		id: model
-		xml: API.get_updates_current()
 	}
+
+	states: [
+		State {
+			name: "profile"
+			PropertyChanges {target: shares; visible: true}
+		},
+		State {
+			name: "connections"
+			PropertyChanges {target: connections; visible: true}
+		}
+	]
 }

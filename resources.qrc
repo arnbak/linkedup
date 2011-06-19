@@ -16,5 +16,24 @@
         <file>qml/images/previous.png</file>
         <file>qml/images/previous-small.png</file>
         <file>qml/images/link.png</file>
+        <file>qml/images/network.png</file>
+        <file>qml/images/network-small.png</file>
+        <file>qml/images/user-small.png</file>
+        <file>qml/images/link-small.png</file>
+        <file>qml/images/comment-add-small.png</file>
+        <file>qml/images/comment-accept-small.png</file>
+        <file>qml/images/comment-disabled-small.png</file>
+        <file>qml/images/like-added-small.png</file>
+        <file>qml/images/like-add-small.png</file>
+        <file>qml/images/arrow-down-small.png</file>
+        <file>qml/images/star-off.png</file>
+        <file>qml/images/star-on.png</file>
+        <file>qml/images/email-accept.png</file>
+        <file>qml/images/email-add.png</file>
+        <file>qml/images/settings.png</file>
+        <file>qml/images/windows.png</file>
+        <file>qml/images/x.png</file>
+        <file>qml/images/add_connection.png</file>
+        <file>qml/images/add_connection_sent.png</file>
     </qresource>
 </RCC>

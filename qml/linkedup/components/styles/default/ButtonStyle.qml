@@ -41,11 +41,12 @@ QtObject {
             width: row.width
             height: row.height
             anchors.centerIn: parent    //mm see QTBUG-15619
-            opacity: enabled ? 1 : 0.5
-            transform: Translate {
-                x: button.pressed || button.checked ? 1 : 0
-                y: button.pressed || button.checked ? 1 : 0
-            }
+			opacity: enabled ? 1 : 0.5
+			transform: Translate {
+				x: button.pressed || button.checked ? 1 : 0
+				y: button.pressed || button.checked ? 1 : 0
+			}
+
 
             Row {
                 id: row
@@ -60,7 +61,7 @@ QtObject {
                 Text {
                     color: textColor //mm see QTBUG-15623
                     anchors.verticalCenter: parent.verticalCenter
-					font.pixelSize: 20 //added by me
+					font.pixelSize: 25 //added by me
                     text: button.text
                     horizontalAlignment: Text.Center
                     elide: Text.ElideRight //mm can't make layout work as desired without implicit size support, see QTBUG-14957

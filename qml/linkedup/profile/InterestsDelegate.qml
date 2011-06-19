@@ -11,8 +11,8 @@ Item {
 		anchors.left: parent.left
 		anchors.right: parent.right
 		anchors.margins: 10
-		height: parent.height
-		color: palette.dark
+		height: rootColumn.height
+		color: "transparent"
 		radius: 10
 
 		Column{
@@ -21,7 +21,7 @@ Item {
 			anchors.right: parent.right
 			anchors.verticalCenter: parent.verticalCenter
 			anchors.margins: 10
-			Text {font.pixelSize: 16; font.family: "Arial"; wrapMode: Text.WrapAnywhere; width: root.width; color: palette.text; text: interests}
+			Text {font.pixelSize: 20; wrapMode: Text.Wrap; width: border.width-20; color: palette.text; text: interests}
 
 		}
 	}

@@ -15,8 +15,11 @@ public:
     explicit Authorizer(QObject *parent = 0);
 	virtual ~Authorizer();
 
-	Q_INVOKABLE	void request_token();
-	Q_INVOKABLE	void access_token(QString pin);
+	Q_INVOKABLE	QString request_token();
+	Q_INVOKABLE void generate_access_url(QString request_response);
+
+	Q_INVOKABLE	QString access_token(QString pin);
+	Q_INVOKABLE void store_key(QString request_response);
 
 private:
 	QString* req_token;

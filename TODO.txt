@@ -1,2 +1,7 @@
-  * make profile components vanish when empty
-  * make the list the size of the currently shown item, not just expand to the biggest
+
+
+  x make profile components vanish when empty
+  - make the list the size of the currently shown item, not just expand to the biggest
+  * make button's width animated
+  - encode the body and subject for use in XML files. A "<", for example, will break it without encoding??
+

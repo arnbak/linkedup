@@ -2,15 +2,14 @@ import QtQuick 1.0
 import "../components"
 
 
-Rectangle{
+Item{
 	id: root
 	width: parent.width
 	height:  parent.height
 
 	signal posted
 
-	SystemPalette{id: palette}
-	color:  palette.dark
+
 
 	states: [
 		State {
@@ -21,7 +20,7 @@ Rectangle{
 
 	function post(){
 		var xmlHttp = new XMLHttpRequest();
-		var list = API.post_status(status.text)
+		var list = API.post_share(status.text)
 		var url = list[0]
 		var header = list[1]
 		var body = list[2]
@@ -79,6 +78,7 @@ Rectangle{
 			id: profilePic
 			source: pictureUrl
 			asynchronous: true
+			smooth: true
 			anchors.left: picBox.left
 			anchors.bottom: picBox.bottom
 			height: parent.height
